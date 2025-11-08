@@ -19,6 +19,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(','
 
 # Application definition
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -208,4 +209,142 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+
+# ============================================
+# JAZZMIN SETTINGS - Admin Moderno
+# ============================================
+
+JAZZMIN_SETTINGS = {
+    # Título en el header
+    "site_title": "RamboPet Admin",
+    "site_header": "RamboPet",
+    "site_brand": "Clínica Veterinaria RamboPet",
+    "site_logo": None,
+    "login_logo": None,
+    "site_logo_classes": "img-circle",
+    "site_icon": None,
+    
+    # Mensaje de bienvenida
+    "welcome_sign": "Bienvenido a RamboPet - Sistema de Gestión Veterinaria",
+    
+    # Copyright en el footer
+    "copyright": "RamboPet © 2025 - Clínica Veterinaria",
+    
+    # Links en el menú superior
+    "topmenu_links": [
+        {"name": "Inicio", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Documentación API", "url": "/swagger/", "new_window": True},
+        {"name": "Ver API", "url": "/api/v1/", "new_window": True},
+    ],
+    
+    # Configuración del sidebar
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    
+    # Ordenar apps en el menú
+    "order_with_respect_to": ["usuarios", "pacientes", "citas", "hce", "inventario", "auth"],
+    
+    # Iconos personalizados para cada modelo (Font Awesome 5)
+    "icons": {
+        # Django Auth
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        
+        # App Usuarios
+        "usuarios": "fas fa-user-shield",
+        "usuarios.User": "fas fa-user-circle",
+        
+        # App Pacientes
+        "pacientes": "fas fa-paw",
+        "pacientes.Especie": "fas fa-layer-group",
+        "pacientes.Raza": "fas fa-dna",
+        "pacientes.Mascota": "fas fa-dog",
+        
+        # App Citas
+        "citas": "fas fa-calendar-alt",
+        "citas.Cita": "fas fa-calendar-check",
+        
+        # App HCE (Historia Clínica)
+        "hce": "fas fa-file-medical-alt",
+        "hce.EpisodioClinico": "fas fa-file-medical",
+        "hce.ConstantesVitales": "fas fa-heartbeat",
+        "hce.Adjunto": "fas fa-paperclip",
+        
+        # App Inventario
+        "inventario": "fas fa-warehouse",
+        "inventario.Producto": "fas fa-pills",
+        "inventario.Lote": "fas fa-boxes",
+        "inventario.MovimientoInventario": "fas fa-dolly",
+    },
+    
+    # Iconos por defecto
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    # Temas disponibles: default, cerulean, cosmo, cyborg, darkly, flatly, journal, 
+    # litera, lumen, lux, materia, minty, pulse, sandstone, simplex, slate, 
+    # solar, spacelab, superhero, united, yeti
+    "theme": "flatly",  # Tema moderno y profesional
+    
+    # Tema oscuro (cuando el usuario active modo oscuro)
+    "dark_mode_theme": "darkly",
+    
+    # Constructor de UI (permite cambiar temas desde el admin)
+    "show_ui_builder": False,
+    
+    # Formato de los formularios de cambio
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+    
+    # Idioma
+    "language_chooser": False,
+    
+    # Links relacionados
+    "related_modal_active": True,
+    
+    # Personalización de usuario
+    "usermenu_links": [
+        {"name": "Ver Perfil", "url": "admin:usuarios_user_changelist", "icon": "fas fa-user"},
+        {"model": "auth.user"}
+    ],
+}
+
+# Personalización avanzada de la UI
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-primary",
+    "accent": "accent-primary",
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "actions_sticky_top": False,
 }

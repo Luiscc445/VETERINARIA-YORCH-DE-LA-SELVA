@@ -36,3 +36,6 @@ django-debug-toolbar==4.2.0
 pytest==7.4.4
 pytest-django==4.7.0
 factory-boy==3.3.0
+
+# UI moderna para admin
+django-jazzmin==3.0.0
